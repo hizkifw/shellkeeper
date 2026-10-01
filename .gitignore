@@ -1,0 +1,26 @@
+# secrets / local config
+.env
+
+# environments
+.venv/
+bench/.venv-shguard/
+__pycache__/
+*.pyc
+
+# large artifacts (weights + dataset are published on Hugging Face)
+runs/
+data/
+release/
+logs/
+
+# third-party binary (download it yourself, see bench/run.py)
+bench/dcg/
+bench/results/
+
+# red-team cases stay private (they are a bypass list for the published weights); reports are public
+redteam/**
+!redteam/
+!redteam/v2/
+!redteam/REPORT.md
+!redteam/v2/REPORT.md
+!redteam/adjudicate_set.py
