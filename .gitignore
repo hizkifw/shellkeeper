@@ -24,3 +24,7 @@ redteam/**
 !redteam/REPORT.md
 !redteam/v2/REPORT.md
 !redteam/adjudicate_set.py
+
+# local tooling (llama.cpp binaries/source)
+tools/
+gguf/

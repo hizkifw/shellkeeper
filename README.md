@@ -7,6 +7,8 @@ far, and the proposed command. It returns `P(unsafe)` from a single forward pass
 
 - **Weights:** [hizkifw/shellkeeper-0.6b](https://huggingface.co/hizkifw/shellkeeper-0.6b)
 - **Dataset:** [hizkifw/shellkeeper-data](https://huggingface.co/datasets/hizkifw/shellkeeper-data)
+- **GGUF (llama.cpp):** [hizkifw/shellkeeper-0.6b-GGUF](https://huggingface.co/hizkifw/shellkeeper-0.6b-GGUF). Q4_K_M (397 MB) is
+  lossless and takes about 106 ms on CPU. Quantization study: [bench/QUANT.md](bench/QUANT.md)
 
 Rule-based guards judge only the command string. shellkeeper judges the command *in context*:
 
@@ -72,8 +74,9 @@ shellkeeper/   format.py (prompt format, shared by training and inference), guar
 gen/           data pipeline: policy.py (label policy), generate.py (9 generation modes), verify.py (blind relabel),
                mine.py + adjudicate.py + hardmine.py (error mining and cleaning)
 train.py       full fine-tune; loss on the label token only, using left padding and last-position logits
+qat.py         quantization-aware fine-tuning (exact Q4_0 / ternary TQ simulation, Q2_K/Q3_K proxies)
 eval/          golden.py (hand-written cases), evaluate.py, compare.py, probe.py (score custom JSONL cases)
-bench/         comparison against sh-guard, dcg and LLM judges
+bench/         comparison against sh-guard, dcg and LLM judges; gguf_eval.py scores GGUF quants via llama-server
 redteam/       red-team reports (the case files are kept private)
 ```
 
